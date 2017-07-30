@@ -1,0 +1,32 @@
+.search-box-container {
+	width: 100%;
+	position: relative;
+}
+
+#search-box {
+    width: 100%;
+    border: none;
+    background-color: #322427;
+    height: 40px;
+    padding-left: 55px;
+    font-family: 'Roboto';
+    font-size: 1em;
+    color: white;
+}
+
+#search-box:focus {
+	outline: none;
+	background-color: #DB1D40;
+}
+
+i.fa.fa-search {
+    color: #DB1D40;
+    position: absolute;
+    padding: 11px 20px;
+    top: 0;
+    left: 0;
+}
+
+#search-box:focus + i.fa.fa-search {
+	color: #231B1D;
+}
