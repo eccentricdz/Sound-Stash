@@ -4,7 +4,6 @@ import './SearchBox.css';
 class SearchBox extends Component {
 	constructor(props) {
 		super(props)
-		this.handleChange.bind(this)
 	}
 	handleChange(event) {
 		const query = event.target.value
