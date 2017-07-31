@@ -7,14 +7,14 @@
     width: 100%;
     border: none;
     background-color: #322427;
-    height: 40px;
+    height: 50px;
     padding-left: 60px;
     font-family: 'Roboto';
     font-size: 0.9em;
     color: white;
 }
 
-#search-box:focus {
+#search-box:focus, #search-box.has-value {
 	outline: none;
 	background-color: #DB1D40;
 }
@@ -22,11 +22,11 @@
 i.fa.fa-search {
     color: #DB1D40;
     position: absolute;
-    padding: 11px 20px;
+    padding: 16px 20px;
     top: 0;
     left: 0;
 }
 
-#search-box:focus + i.fa.fa-search {
+#search-box:focus + i.fa.fa-search, #search-box.has-value + i.fa.fa-search {
 	color: #231B1D;
 }

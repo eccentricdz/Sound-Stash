@@ -1,6 +1,7 @@
 #songs-list {
     padding: 0;
     list-style-type: none;
+    margin: 0 0 20px;
 }
 
 .song-container {
@@ -11,6 +12,11 @@
     justify-content: center;
     box-shadow: 0 -1px 0 #231B1D inset;
     padding: 5%;
+}
+
+.song-container:hover {
+	background-color: #231B1D;
+	box-shadow: 5px 0 0 #DB1D40 inset;
 }
 
 .song-thumbnail {
@@ -37,6 +43,10 @@
     max-width: 80px;
     min-width: 30px;
     color: #74676A;
+}
+
+.song-container:hover .download-icon-container{
+	color: #DB1D40;
 }
 
 .song-title {
