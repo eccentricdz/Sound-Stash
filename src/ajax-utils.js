@@ -19,7 +19,6 @@ ajaxUtils.getSearchResults = (query, callback) => {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
           	const response = JSON.parse(httpRequest.responseText)
-            console.log(response)
             callback(response)
           } else {
             console.log('There was a problem with the request : '+httpRequest.status)
