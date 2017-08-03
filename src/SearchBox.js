@@ -31,8 +31,8 @@ class SearchBox extends Component {
 		const iconClassName = "fa fw " + (this.props.isLoading ? "fa-circle-o-notch fa-spin" : "fa-search")
 		return (
 			<div className="search-box-container" onSubmit={this.handleFormSubmit}>
-				<form id="search-box-form">
-					<input type="text" id="search-box" className={inputClassName} name="search-box" onChange={this.handleChange}/>
+				<form id="search-box-form" autoComplete="off">
+					<input type="text" id="search-box" className={inputClassName} name="search-box" onChange={this.handleChange} autoComplete="off"/>
 					<i className={iconClassName} aria-hidden="true"></i>
 				</form>
 			</div>
