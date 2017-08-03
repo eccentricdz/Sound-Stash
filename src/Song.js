@@ -23,8 +23,8 @@ class Song extends Component {
 			title : rawVideoInfo.snippet.title,
 			channelName : rawVideoInfo.snippet.channelTitle,
 			thumbnailImageUrl : rawVideoInfo.snippet.thumbnails.medium.url,
-			audioDownloadLink: SS_BASE_URL + 'download/audio/' + rawVideoInfo.id.videoId,
-			videoDownloadLink: SS_BASE_URL + 'download/video/' + rawVideoInfo.id.videoId,
+			audioDownloadLink: SS_BASE_URL + 'stream/audio/' + rawVideoInfo.id.videoId,
+			videoDownloadLink: SS_BASE_URL + 'stream/video/' + rawVideoInfo.id.videoId,
 
 		}
 
@@ -67,8 +67,8 @@ class Song extends Component {
 		return (
 			<div className="song-wrapper">
 				<div className="song-dload-links" >
-					<a className="audio-dload-link" href={videoInfo.audioDownloadLink}>audio</a>
-					<a className="video-dload-link" href={videoInfo.videoDownloadLink}>video</a>
+					<a className="audio-dload-link" href={videoInfo.audioDownloadLink} download={videoInfo.title + ".mp3"}>audio</a>
+					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
 				</div>
 				<div className={containerClassName}>
 					<div className='song-thumbnail' style={thumbnailStyle}></div>

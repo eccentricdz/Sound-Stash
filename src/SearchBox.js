@@ -8,21 +8,32 @@ class SearchBox extends Component {
 		this.state = {
 			value: ''
 		}
+
+		this.handleChange = this.handleChange.bind(this)
+		this.handleFormSubmit = this.handleFormSubmit.bind(this)
 	}
+
+	handleFormSubmit(event) {
+		event.preventDefault()
+	}
+
 	handleChange(event) {
 		const query = event.target.value
 		this.setState({
 			value: query
 		})
-		this.props.onChange(query)
+		if (query) {
+			this.props.onChange(query)
+		}
 	}
 	render() {
-		const className = this.state.value === '' ? '' : 'has-value'
+		const inputClassName = this.state.value === '' ? '' : 'has-value'
+		const iconClassName = "fa fw " + (this.props.isLoading ? "fa-circle-o-notch fa-spin" : "fa-search")
 		return (
-			<div className="search-box-container">
+			<div className="search-box-container" onSubmit={this.handleFormSubmit}>
 				<form id="search-box-form">
-					<input type="text" id="search-box" className={className} name="search-box" onChange={this.handleChange.bind(this)}/>
-					<i className="fa fa-search" aria-hidden="true"></i>
+					<input type="text" id="search-box" className={inputClassName} name="search-box" onChange={this.handleChange}/>
+					<i className={iconClassName} aria-hidden="true"></i>
 				</form>
 			</div>
 		)

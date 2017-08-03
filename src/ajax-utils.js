@@ -2,14 +2,13 @@ let ajaxUtils = {}
 const SS_BASE_URL = "https://sound-stash.herokuapp.com/"
 const SS_BASE_SEARCH_URL = SS_BASE_URL + "search/"
 
-ajaxUtils.getSearchResults = (query, callback) => {
+ajaxUtils.getSearchResults = (query, successCallback, errorCallback) => {
 	if (!query)
-      return false
+      errorCallback('Search query is invalid')
 
     const httpRequest = new XMLHttpRequest()
     if (!httpRequest) {
-      console.log('Giving up: Cannot create an XMLHTTP instance')
-      return false
+      errorCallback('Giving up: Cannot create an XMLHTTP instance')
     }
 
     const queryUrl = SS_BASE_SEARCH_URL + query
@@ -19,15 +18,15 @@ ajaxUtils.getSearchResults = (query, callback) => {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
           	const response = JSON.parse(httpRequest.responseText)
-            callback(response)
+            successCallback(response)
           } else {
-            console.log('There was a problem with the request : '+httpRequest.status)
+            errorCallback('There was a problem with the request : '+httpRequest.status)
             return false
           }
         }
       }
       catch( e ) {
-        console.log('Caught Exception: ' + e.description)
+        errorCallback(e)
       }
     }
 

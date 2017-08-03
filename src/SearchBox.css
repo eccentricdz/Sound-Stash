@@ -19,7 +19,7 @@
 	background-color: #DB1D40;
 }
 
-i.fa.fa-search {
+#search-box-form i.fa {
     color: #DB1D40;
     position: absolute;
     padding: 16px 20px;
@@ -27,6 +27,6 @@ i.fa.fa-search {
     left: 0;
 }
 
-#search-box:focus + i.fa.fa-search, #search-box.has-value + i.fa.fa-search {
+#search-box:focus + i.fa, #search-box.has-value + i.fa {
 	color: #231B1D;
 }

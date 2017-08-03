@@ -9,20 +9,33 @@ class App extends Component {
     super(props)
 
     this.state = {
-      resultsArray : []
+      resultsArray : [],
+      isLoading: false
     }
 
-    this.handleQueryChange.bind(this)
+    this.handleQueryChange = this.handleQueryChange.bind(this)
+    this.setIsLoadingState = this.setIsLoadingState.bind(this)
   }
 
   handleQueryChange(query) {
+    this.setIsLoadingState(true)
     AjaxUtils.getSearchResults(query, function(searchResults) {
       if (searchResults) {
         this.setState({
           resultsArray: searchResults
         })
       }
-    }.bind(this))
+      this.setIsLoadingState(false)
+    }.bind(this), (e) => {
+      this.setIsLoadingState(false)
+      console.log(e.toString())
+    })
+  }
+
+  setIsLoadingState(value) {
+    this.setState({
+      isLoading: value
+    })
   }
 
   render() {
@@ -32,8 +45,8 @@ class App extends Component {
           <h2 id="sound">SOUND</h2><h2 id="stash">STASH</h2>
         </div>
         <div className="App-container">
-          <SearchBox onChange={this.handleQueryChange.bind(this)}/>
-          <SongsList resultsArray={this.state.resultsArray}/>
+          <SearchBox onChange={this.handleQueryChange} isLoading={this.state.isLoading}/>
+          <SongsList resultsArray={this.state.resultsArray} />
         </div>
       </div>
     );

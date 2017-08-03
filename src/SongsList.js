@@ -8,7 +8,6 @@ class SongsList extends Component {
 		const songComponentList = resultsArray.map((videoResultObject) => 
 			<Song videoInfo={videoResultObject} key={videoResultObject.id.videoId} />
 		)
-
 		return (
 			<ul id="songs-list">{songComponentList}</ul>
 		)
