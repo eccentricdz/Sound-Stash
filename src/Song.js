@@ -20,6 +20,7 @@ class Song extends Component {
 	prepareInfoObject() {
 		const rawVideoInfo = this.props.videoInfo
 		let videoInfo = {
+			id: rawVideoInfo.id.videoId,
 			title : rawVideoInfo.snippet.title,
 			channelName : rawVideoInfo.snippet.channelTitle,
 			thumbnailImageUrl : rawVideoInfo.snippet.thumbnails.medium.url,
@@ -60,12 +61,13 @@ class Song extends Component {
 
 	render() {
 		const videoInfo = this.prepareInfoObject()
+		const key = videoInfo.id
 		const thumbnailStyle = {
 			backgroundImage: 'url(' + videoInfo.thumbnailImageUrl + ')'
 		}
 		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '')
 		return (
-			<div className="song-wrapper">
+			<div className="song-wrapper" key={key}>
 				<div className="song-dload-links" >
 					<a className="audio-dload-link" href={videoInfo.audioDownloadLink} download={videoInfo.title + ".mp3"}>audio</a>
 					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
