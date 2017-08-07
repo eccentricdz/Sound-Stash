@@ -5,13 +5,12 @@
 }
 
 .song-wrapper {
-	height: 80px;
 	position: relative;
 }
 
 .song-container {
 	position: relative;
-	height: 100%;
+	height: 80px;
     display: flex;
     background-color: #322427;
     align-items: center;
@@ -20,6 +19,7 @@
     padding: 0 0 0 5%;
     z-index: 2;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 
 .song-wrapper:hover .song-container {
@@ -49,7 +49,7 @@
 }
 
 .download-icon-container {
-    height: 100%;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,7 +77,7 @@
 }
 
 .song-dload-links {
-	height: 100%;
+	height: 80px;
 	width: 100px;
 	position: absolute;
 	top: 0;
@@ -106,4 +106,19 @@
 
 .video-dload-link {
 	background-color: #685B5E;
+}
+
+.song-ytpreview {
+    display: none;
+}
+
+.yt-preview-active + .song-ytpreview {
+    background-color: black;
+    padding: 15px 0;
+    display: block;
+}
+
+.yt-preview-active {
+    background-color: black !important;
+    box-shadow: none;
 }

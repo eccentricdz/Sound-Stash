@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import YTPreview from './YTPreview'
 import './Song.css'
 
 const SS_BASE_URL = "https://sound-stash.herokuapp.com/"
@@ -8,12 +9,14 @@ class Song extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			areDownloadLinksActive: false
+			areDownloadLinksActive: false,
+			isPreviewActive: false
 		}
 
 		this.handleDownloadIconMouseEnter = this.handleDownloadIconMouseEnter.bind(this)
 		this.handleDownloadIconMouseLeave = this.handleDownloadIconMouseLeave.bind(this)
 		this.handleDownloadIconTap = this.handleDownloadIconTap.bind(this)
+		this.handleSongOnClick = this.handleSongOnClick.bind(this)
 	}
 
 	prepareInfoObject() {
@@ -43,6 +46,13 @@ class Song extends Component {
 		})
 	}
 
+	handleSongOnClick() {
+		const isPreviewActive = this.state.isPreviewActive
+		this.setState({
+			isPreviewActive: !isPreviewActive
+		})
+	}
+
 	handleDownloadIconTap(e) {
 		//e.preventDefault()
 		var isDownloadLinkActive = this.state.areDownloadLinksActive
@@ -57,14 +67,20 @@ class Song extends Component {
 		const thumbnailStyle = {
 			backgroundImage: 'url(' + videoInfo.thumbnailImageUrl + ')'
 		}
-		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '')
+		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '') + (this.state.isPreviewActive ? ' yt-preview-active' : '')
+
+		let ytpreview = ""
+		if (this.state.isPreviewActive) {
+			ytpreview = <YTPreview videoId={videoInfo.id} />
+		}
+
 		return (
 			<div className="song-wrapper" key={key}>
 				<div className="song-dload-links" >
 					<a className="audio-dload-link" href={videoInfo.audioDownloadLink} download={videoInfo.title + ".mp3"}>audio</a>
 					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
 				</div>
-				<div className={containerClassName}>
+				<div className={containerClassName} onClick={this.handleSongOnClick}>
 					<div className='song-thumbnail' style={thumbnailStyle}></div>
 					<div className='song-info-container'>
 						<p className="song-title">{videoInfo.title}</p>
@@ -73,6 +89,10 @@ class Song extends Component {
 					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onTouchEnd={this.handleDownloadIconTap}>
 						<i className="fa fa-cloud-download" aria-hidden="true"></i>
 					</div>
+				</div>
+
+				<div className="song-ytpreview" key={key}>
+					{ytpreview}
 				</div>
 			</div>
 		)
