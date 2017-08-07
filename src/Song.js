@@ -23,8 +23,8 @@ class Song extends Component {
 			title : rawVideoInfo.snippet.title,
 			channelName : rawVideoInfo.snippet.channelTitle,
 			thumbnailImageUrl : rawVideoInfo.snippet.thumbnails.medium.url,
-			audioDownloadLink: SS_BASE_URL + 'stream/audio/' + rawVideoInfo.id.videoId,
-			videoDownloadLink: SS_BASE_URL + 'stream/video/' + rawVideoInfo.id.videoId,
+			audioDownloadLink: SS_BASE_URL + 'download/audio/' + rawVideoInfo.id.videoId,
+			videoDownloadLink: SS_BASE_URL + 'download/video/' + rawVideoInfo.id.videoId,
 
 		}
 
