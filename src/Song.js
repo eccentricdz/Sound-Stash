@@ -13,7 +13,6 @@ class Song extends Component {
 
 		this.handleDownloadIconMouseEnter = this.handleDownloadIconMouseEnter.bind(this)
 		this.handleDownloadIconMouseLeave = this.handleDownloadIconMouseLeave.bind(this)
-		this.handleDownloadIconClick = this.handleDownloadIconClick.bind(this)
 		this.handleDownloadIconTap = this.handleDownloadIconTap.bind(this)
 	}
 
@@ -44,15 +43,8 @@ class Song extends Component {
 		})
 	}
 
-	handleDownloadIconClick() {
-		var isDownloadLinkActive = this.state.areDownloadLinksActive
-		this.setState({
-			areDownloadLinksActive: !isDownloadLinkActive
-		})
-	}
-
 	handleDownloadIconTap(e) {
-		e.preventDefault()
+		//e.preventDefault()
 		var isDownloadLinkActive = this.state.areDownloadLinksActive
 		this.setState({
 			areDownloadLinksActive: !isDownloadLinkActive
@@ -78,7 +70,7 @@ class Song extends Component {
 						<p className="song-title">{videoInfo.title}</p>
 						<p className="song-channel-name">{videoInfo.channelName}</p>
 					</div>
-					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onMouseDown={this.handleDownloadIconClick} onTouchEnd={this.handleDownloadIconTap}>
+					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onTouchEnd={this.handleDownloadIconTap}>
 						<i className="fa fa-cloud-download" aria-hidden="true"></i>
 					</div>
 				</div>
