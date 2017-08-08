@@ -3,3 +3,22 @@
 	display: block;
 	margin: 0px auto;
 }
+
+.song-ytpreview {
+    background-color: black;
+    padding: 15px 0;
+    display: block;
+    height: 0;
+    transition: height 0.4s;
+}
+
+.yt-preview-active-wrapper .song-ytpreview {
+	height: auto;
+}
+
+@media screen 
+  and (max-device-width: 800px) {
+  	.song-ytpreview {
+	    padding: 0;
+	}
+  }

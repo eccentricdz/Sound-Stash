@@ -108,17 +108,16 @@
 	background-color: #685B5E;
 }
 
-.song-ytpreview {
-    display: none;
-}
-
-.yt-preview-active + .song-ytpreview {
-    background-color: black;
-    padding: 15px 0;
-    display: block;
-}
-
 .yt-preview-active {
     background-color: black !important;
+    /*box-shadow: 5px 0 0 #DB1D40 inset;*/
     box-shadow: none;
+}
+
+.yt-preview-active .download-icon-container {
+    color: #DB1D40;
+}
+
+.yt-preview-active-song-wrapper {
+    order: -1;
 }

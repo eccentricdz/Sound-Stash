@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import YTPreview from './YTPreview'
+//import YTPreview from './YTPreview'
 import './Song.css'
 
 const SS_BASE_URL = "https://sound-stash.herokuapp.com/"
@@ -10,7 +10,6 @@ class Song extends Component {
 		super(props)
 		this.state = {
 			areDownloadLinksActive: false,
-			isPreviewActive: false
 		}
 
 		this.handleDownloadIconMouseEnter = this.handleDownloadIconMouseEnter.bind(this)
@@ -47,14 +46,11 @@ class Song extends Component {
 	}
 
 	handleSongOnClick() {
-		const isPreviewActive = this.state.isPreviewActive
-		this.setState({
-			isPreviewActive: !isPreviewActive
-		})
+		this.props.handleOnClick(this.props.videoInfo.id.videoId)
 	}
 
 	handleDownloadIconTap(e) {
-		//e.preventDefault()
+		e.gesture.stopPropagation()
 		var isDownloadLinkActive = this.state.areDownloadLinksActive
 		this.setState({
 			areDownloadLinksActive: !isDownloadLinkActive
@@ -67,15 +63,10 @@ class Song extends Component {
 		const thumbnailStyle = {
 			backgroundImage: 'url(' + videoInfo.thumbnailImageUrl + ')'
 		}
-		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '') + (this.state.isPreviewActive ? ' yt-preview-active' : '')
-
-		let ytpreview = ""
-		if (this.state.isPreviewActive) {
-			ytpreview = <YTPreview videoId={videoInfo.id} />
-		}
-
+		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '') + (this.props.isPreviewActive ? ' yt-preview-active' : '')
+		const wrapperClassName = 'song-wrapper' + (this.props.isPreviewActive ? ' yt-preview-active-song-wrapper' : '')
 		return (
-			<div className="song-wrapper" key={key}>
+			<div className={wrapperClassName} key={key}>
 				<div className="song-dload-links" >
 					<a className="audio-dload-link" href={videoInfo.audioDownloadLink} download={videoInfo.title + ".mp3"}>audio</a>
 					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
@@ -89,10 +80,6 @@ class Song extends Component {
 					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onTouchEnd={this.handleDownloadIconTap}>
 						<i className="fa fa-cloud-download" aria-hidden="true"></i>
 					</div>
-				</div>
-
-				<div className="song-ytpreview" key={key}>
-					{ytpreview}
 				</div>
 			</div>
 		)
