@@ -50,11 +50,15 @@ class Song extends Component {
 	}
 
 	handleDownloadIconTap(e) {
-		e.gesture.stopPropagation()
+		e.stopPropagation()
 		var isDownloadLinkActive = this.state.areDownloadLinksActive
 		this.setState({
 			areDownloadLinksActive: !isDownloadLinkActive
 		})
+	}
+
+	handleDownloadIconClick(e) {
+		e.stopPropagation()
 	}
 
 	render() {
@@ -77,7 +81,7 @@ class Song extends Component {
 						<p className="song-title">{videoInfo.title}</p>
 						<p className="song-channel-name">{videoInfo.channelName}</p>
 					</div>
-					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onTouchEnd={this.handleDownloadIconTap}>
+					<div className='download-icon-container' onMouseEnter={this.handleDownloadIconMouseEnter} onMouseLeave={this.handleDownloadIconMouseLeave} onClick={this.handleDownloadIconClick} onTouchEnd={this.handleDownloadIconTap}>
 						<i className="fa fa-cloud-download" aria-hidden="true"></i>
 					</div>
 				</div>
