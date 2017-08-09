@@ -22,9 +22,7 @@ class SearchBox extends Component {
 		this.setState({
 			value: query
 		})
-		if (query) {
-			this.props.onChange(query)
-		}
+		this.props.onChange(query)
 	}
 	render() {
 		const inputClassName = this.state.value === '' ? '' : 'has-value'

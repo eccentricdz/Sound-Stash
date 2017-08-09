@@ -8,12 +8,6 @@
     background-color: black;
     padding: 15px 0;
     display: block;
-    height: 0;
-    transition: height 0.4s;
-}
-
-.yt-preview-active-wrapper .song-ytpreview {
-	height: auto;
 }
 
 @media screen 

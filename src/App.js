@@ -10,16 +10,25 @@ class App extends Component {
 
     this.state = {
       resultsArray : [],
-      isLoading: false
+      isLoading: false,
+      queryChangeTimeout: null,
+      query: ""
     }
 
     this.handleQueryChange = this.handleQueryChange.bind(this)
     this.setIsLoadingState = this.setIsLoadingState.bind(this)
+    this.makeAjaxCallForSearchResults = this.makeAjaxCallForSearchResults.bind(this)
   }
 
-  handleQueryChange(query) {
-    this.setIsLoadingState(true)
+  makeAjaxCallForSearchResults() {
+    const query = this.state.query
+    if (!query) {
+      this.setIsLoadingState(false)
+      return
+    }
+
     AjaxUtils.getSearchResults(query, function(searchResults) {
+      console.log('ajax call sent')
       if (searchResults) {
         this.setState({
           resultsArray: searchResults
@@ -29,6 +38,17 @@ class App extends Component {
     }.bind(this), (e) => {
       this.setIsLoadingState(false)
       console.log(e.toString())
+    })
+  }
+
+  handleQueryChange(query) {
+    this.setIsLoadingState(true)
+    clearTimeout(this.state.queryChangeTimeout)
+
+    let queryChangeTimeout = setTimeout(this.makeAjaxCallForSearchResults, 300)
+    this.setState({
+      queryChangeTimeout: queryChangeTimeout,
+      query: query
     })
   }
 

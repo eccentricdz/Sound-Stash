@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Song from './Song'
-import YTPreview from './YTPreview'
+//import YTPreview from './YTPreview'
 import "./SongsList.css"
 
 class SongsList extends Component {
@@ -25,13 +25,8 @@ class SongsList extends Component {
 		const songComponentList = resultsArray.map((videoResultObject) => 
 			<Song videoInfo={videoResultObject} key={videoResultObject.id.videoId} handleOnClick={this.handleSongOnClick} isPreviewActive={this.state.videoPreviewId === videoResultObject.id.videoId}/>
 		)
-		let ytpreview = ""
-		if (this.state.isVideoPreviewActive) {
-			ytpreview = <YTPreview videoId={this.state.videoPreviewId} />
-		}
 		return (
 			<div id="song-list-wrapper" className={this.state.isVideoPreviewActive ? "yt-preview-active-wrapper" : ""}>
-				{ytpreview}
 				<ul id="songs-list">{songComponentList}</ul>
 			</div>
 		)
