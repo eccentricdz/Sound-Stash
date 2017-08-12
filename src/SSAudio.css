@@ -1,0 +1,21 @@
+#ssaudio-container {
+	width: 100%;
+	height: 100px;
+}
+
+#ssaudio-image-container {
+	height:100%;
+	background-position-y: -75px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    background-blend-mode: luminosity;
+}
+
+#ssaudio-image-container i {
+	color: #DB1D40;
+	position: absolute;
+}

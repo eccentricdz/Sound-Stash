@@ -28,7 +28,6 @@ class App extends Component {
     }
 
     AjaxUtils.getSearchResults(query, function(searchResults) {
-      console.log('ajax call sent')
       if (searchResults) {
         this.setState({
           resultsArray: searchResults

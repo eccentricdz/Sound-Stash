@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import YTPreview from './YTPreview'
+import SSAudio from './SSAudio'
 import './Song.css'
 
 const SS_BASE_URL = "https://sound-stash.herokuapp.com/"
@@ -25,6 +26,7 @@ class Song extends Component {
 			title : rawVideoInfo.snippet.title,
 			channelName : rawVideoInfo.snippet.channelTitle,
 			thumbnailImageUrl : rawVideoInfo.snippet.thumbnails.medium.url,
+			audioPlayerImageUrl: rawVideoInfo.snippet.thumbnails.high.url,
 			audioDownloadLink: SS_BASE_URL + 'download/audio/' + rawVideoInfo.id.videoId,
 			videoDownloadLink: SS_BASE_URL + 'download/video/' + rawVideoInfo.id.videoId,
 
@@ -69,12 +71,16 @@ class Song extends Component {
 		}
 		const containerClassName = 'song-container' + (this.state.areDownloadLinksActive ? ' dload-link-active' : '') + (this.props.isPreviewActive ? ' yt-preview-active' : '')
 		const wrapperClassName = 'song-wrapper' + (this.props.isPreviewActive ? ' yt-preview-active-song-wrapper' : '')
-		let ytpreview = ""
+		let preview = ""
 		if (this.props.isPreviewActive) {
-			ytpreview = <YTPreview videoId={videoId} />
+			if (this.props.previewType === "audio")
+				preview = <SSAudio videoId={videoId} imageUrl={videoInfo.audioPlayerImageUrl}/>
+			else if (this.props.previewType === "video")
+				preview = <YTPreview videoId={videoId} />
 		}
 		return (
 			<div className={wrapperClassName} id={videoId} key={videoId}>
+				{preview}
 				<div className="song-dload-links" >
 					<a className="audio-dload-link" href={videoInfo.audioDownloadLink} download={videoInfo.title + ".mp3"}>audio</a>
 					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
@@ -89,7 +95,6 @@ class Song extends Component {
 						<i className="fa fa-cloud-download" aria-hidden="true"></i>
 					</div>
 				</div>
-				{ytpreview}
 			</div>
 		)
 	}

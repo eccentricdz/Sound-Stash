@@ -23,7 +23,7 @@ class SongsList extends Component {
 	render() {
 		const resultsArray = this.props.resultsArray
 		const songComponentList = resultsArray.map((videoResultObject) => 
-			<Song videoInfo={videoResultObject} key={videoResultObject.id.videoId} handleOnClick={this.handleSongOnClick} isPreviewActive={this.state.videoPreviewId === videoResultObject.id.videoId}/>
+			<Song videoInfo={videoResultObject} key={videoResultObject.id.videoId} handleOnClick={this.handleSongOnClick} isPreviewActive={this.state.videoPreviewId === videoResultObject.id.videoId} previewType="audio"/>
 		)
 		return (
 			<div id="song-list-wrapper" className={this.state.isVideoPreviewActive ? "yt-preview-active-wrapper" : ""}>
