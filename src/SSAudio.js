@@ -30,8 +30,9 @@ class SSAudio extends Component {
 		ssAudioElement.addEventListener('canplay', () => {
 			this.setState({
 				canplay: true,
-				currentPlaybackState: 'paused'
+				currentPlaybackState: 'playing'
 			})
+			ssAudioElement.play();
 		})
 
 		ssAudioElement.addEventListener('playing', () => {
@@ -69,7 +70,7 @@ class SSAudio extends Component {
 				<div id="ssaudio-image-container" style={imageContainerStyle} onClick={this.handleImageContainerClick}>
 					<i className={iconClass}></i>
 				</div>
-				<audio id="ssaudio" autoPlay="1">
+				<audio id="ssaudio">
 					<source src={src} type='audio/mpeg; codecs="mp3"'/>
 				</audio>
 			</div>
