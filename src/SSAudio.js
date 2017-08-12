@@ -27,12 +27,14 @@ class SSAudio extends Component {
 
 	initlializeAudioEvents() {
 		const ssAudioElement = document.getElementById('ssaudio')
+		ssAudioElement.play()
+
 		ssAudioElement.addEventListener('canplay', () => {
 			this.setState({
 				canplay: true,
 				currentPlaybackState: 'playing'
 			})
-			ssAudioElement.play();
+			ssAudioElement.play()
 		})
 
 		ssAudioElement.addEventListener('playing', () => {
@@ -71,7 +73,7 @@ class SSAudio extends Component {
 					<i className={iconClass}></i>
 				</div>
 				<audio id="ssaudio">
-					<source src={src} type='audio/mpeg; codecs="mp3"'/>
+					<source src={src}/>
 				</audio>
 			</div>
 		)
