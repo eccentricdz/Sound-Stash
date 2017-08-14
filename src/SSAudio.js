@@ -42,6 +42,24 @@ class SSAudio extends Component {
 				currentPlaybackState: 'playing'
 			})
 		})
+
+		ssAudioElement.addEventListener('waiting', () => {
+			this.setState({
+				currentPlaybackState: 'waiting'
+			})
+		})
+
+		ssAudioElement.addEventListener('durationchange', () => {
+			this.setState({
+				totalDuration: ssAudioElement.duration
+			})
+		})
+
+		ssAudioElement.addEventListener('timeupdate', () => {
+			this.setState({
+				currentPlaybackTime: ssAudioElement.currentTime
+			})
+		})
 	}
 
 	handleImageContainerClick() {
@@ -65,12 +83,17 @@ class SSAudio extends Component {
 		const imageContainerStyle = {
 			backgroundImage: 'url(' + this.props.imageUrl + ')'
 		}
+		const progressPercent = ( this.state.currentPlaybackTime / this.state.totalDuration ) * 100
+		const progressStyle = {
+			width: progressPercent + '%'
+		}
 		const src = "https://sound-stash.herokuapp.com/stream/video/" + this.props.videoId
 		const iconClass = this.iconTypeMap[this.state.currentPlaybackState] + ' fa fw fa-2x'
 		return (
 			<div id="ssaudio-container">
 				<div id="ssaudio-image-container" style={imageContainerStyle} onClick={this.handleImageContainerClick}>
 					<i className={iconClass}></i>
+					<div id="ssaudio-progress" style={progressStyle}></div>
 				</div>
 				<audio id="ssaudio">
 					<source src={src}/>

@@ -1,11 +1,11 @@
 #ssaudio-container {
 	width: 100%;
-	height: 100px;
+	height: 150px;
 }
 
 #ssaudio-image-container {
 	height:100%;
-	background-position-y: -75px;
+	background-position-y: -200px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	display: flex;
@@ -18,4 +18,14 @@
 #ssaudio-image-container i {
 	color: #DB1D40;
 	position: absolute;
+}
+
+#ssaudio-progress {
+	height: 100%;
+	background-color: #DB1D40;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	opacity: 0.2;
+	transition: width 0.2s;
 }

@@ -61,7 +61,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2 id="sound">SOUND</h2><h2 id="stash">STASH</h2>
+          <h1>
+            <img src="logo.png" id="app-logo" alt="Sound Stash Logo"/>
+          </h1>
         </div>
         <div className="App-container">
           <SearchBox onChange={this.handleQueryChange} isLoading={this.state.isLoading}/>
