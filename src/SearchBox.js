@@ -11,6 +11,7 @@ class SearchBox extends Component {
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
+		this.handleClearIconClick = this.handleClearIconClick.bind(this)
 	}
 
 	handleFormSubmit(event) {
@@ -24,14 +25,26 @@ class SearchBox extends Component {
 		})
 		this.props.onChange(query)
 	}
+
+	handleClearIconClick() {
+		this.setState({
+			value: ''
+		})
+		document.getElementById("search-box").focus();
+	}
+
+
 	render() {
 		const inputClassName = this.state.value === '' ? '' : 'has-value'
+		const clearIconElement = this.state.value === '' ? '' : <i className="fa fw fa-close" id="search-box-clear" onClick={this.handleClearIconClick}></i>
 		const iconClassName = "fa fw " + (this.props.isLoading ? "fa-circle-o-notch fa-spin" : "fa-search")
+
 		return (
 			<div className="search-box-container" onSubmit={this.handleFormSubmit}>
 				<form id="search-box-form" autoComplete="off">
-					<input type="text" id="search-box" className={inputClassName} name="search-box" onChange={this.handleChange} autoComplete="off"/>
-					<i className={iconClassName} aria-hidden="true"></i>
+					<input type="text" id="search-box" value={this.state.value} className={inputClassName} name="search-box" onChange={this.handleChange} autoComplete="off"/>
+					<i className={iconClassName} id="search-box-icon" aria-hidden="true"></i>
+					{clearIconElement}
 				</form>
 			</div>
 		)

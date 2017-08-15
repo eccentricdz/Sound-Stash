@@ -8,7 +8,7 @@
     border: none;
     background-color: #322427;
     height: 50px;
-    padding-left: 60px;
+    padding: 0 60px;
     font-family: 'Roboto';
     font-size: 0.9em;
     color: white;
@@ -24,9 +24,17 @@
     position: absolute;
     padding: 16px 20px;
     top: 0;
+}
+
+#search-box-icon {
     left: 0;
 }
 
-#search-box:focus + i.fa, #search-box.has-value + i.fa {
+#search-box-clear {
+    right: 0;
+    cursor: pointer;
+}
+
+#search-box:focus ~ i.fa, #search-box.has-value ~ i.fa {
 	color: #231B1D;
 }
