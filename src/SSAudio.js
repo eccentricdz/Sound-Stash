@@ -19,6 +19,7 @@ class SSAudio extends Component {
 		}
 
 		this.handleImageContainerClick = this.handleImageContainerClick.bind(this)
+		this.attachAdditionalAudioEvents = this.attachAdditionalAudioEvents.bind(this)
 	}
 
 	componentDidMount() {
@@ -27,14 +28,31 @@ class SSAudio extends Component {
 
 	initlializeAudioEvents() {
 		const ssAudioElement = document.getElementById('ssaudio')
-		ssAudioElement.play()
 
+		ssAudioElement.addEventListener('durationchange', () => {
+			this.setState({
+				totalDuration: ssAudioElement.duration
+			})
+		})
+
+		var playPromise = ssAudioElement.play()
+
+		playPromise.then(() => {
+			this.setState({
+				currentPlaybackState: 'playing'
+			})
+			this.attachAdditionalAudioEvents()
+		}, (err) => {
+			console.log(err)
+		})
+	}
+
+	attachAdditionalAudioEvents() {
+		const ssAudioElement = document.getElementById('ssaudio')
 		ssAudioElement.addEventListener('canplay', () => {
 			this.setState({
 				canplay: true,
-				currentPlaybackState: 'playing'
 			})
-			ssAudioElement.play()
 		})
 
 		ssAudioElement.addEventListener('playing', () => {
@@ -46,12 +64,6 @@ class SSAudio extends Component {
 		ssAudioElement.addEventListener('waiting', () => {
 			this.setState({
 				currentPlaybackState: 'waiting'
-			})
-		})
-
-		ssAudioElement.addEventListener('durationchange', () => {
-			this.setState({
-				totalDuration: ssAudioElement.duration
 			})
 		})
 
@@ -90,13 +102,13 @@ class SSAudio extends Component {
 		const src = "https://sound-stash.herokuapp.com/stream/video/" + this.props.videoId
 		const iconClass = this.iconTypeMap[this.state.currentPlaybackState] + ' fa fw fa-2x'
 		return (
-			<div id="ssaudio-container">
+			<div id="ssaudio-container" key={this.props.videoId}>
 				<div id="ssaudio-image-container" style={imageContainerStyle} onClick={this.handleImageContainerClick}>
 					<i className={iconClass}></i>
 					<div id="ssaudio-progress" style={progressStyle}></div>
 				</div>
-				<audio id="ssaudio">
-					<source src={src}/>
+				<audio id="ssaudio" key={this.props.videoId}>
+					<source src={src} type="audio/mp3"/>
 				</audio>
 			</div>
 		)
