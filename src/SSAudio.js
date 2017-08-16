@@ -37,21 +37,26 @@ class SSAudio extends Component {
 
 		var playPromise = ssAudioElement.play()
 
-		playPromise.then(() => {
-			this.setState({
-				currentPlaybackState: 'playing'
+		if( playPromise ) {
+			playPromise.then(() => {
+				this.setState({
+					currentPlaybackState: 'playing'
+				})
+				this.attachAdditionalAudioEvents()
+			}, (err) => {
+				console.log(err)
 			})
-			this.attachAdditionalAudioEvents()
-		}, (err) => {
-			console.log(err)
-		})
+		}
+		else {
+			this.attachAdditionalAudioEvents()	
+		}
 	}
 
 	attachAdditionalAudioEvents() {
 		const ssAudioElement = document.getElementById('ssaudio')
 		ssAudioElement.addEventListener('canplay', () => {
 			this.setState({
-				canplay: true,
+				canPlay: true,
 			})
 		})
 
@@ -108,7 +113,7 @@ class SSAudio extends Component {
 					<div id="ssaudio-progress" style={progressStyle}></div>
 				</div>
 				<audio id="ssaudio" key={this.props.videoId}>
-					<source src={src} type="audio/mp3"/>
+					<source src={src} type="video/mp4"/>
 				</audio>
 			</div>
 		)
