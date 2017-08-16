@@ -47,8 +47,12 @@ class Song extends Component {
 		})
 	}
 
-	handleSongOnClick() {
-		this.props.handleOnClick(this.props.videoInfo.id.videoId)
+	handleSongOnClick(e) {
+		let previewType = 'audio'
+		if (e.target.getAttribute('class') === 'song-thumbnail' || e.target.getAttribute('class').indexOf('song-video-icon') !== -1) {
+			previewType = 'video'
+		}
+		this.props.handleOnClick(this.props.videoInfo.id.videoId, previewType)
 	}
 
 	handleDownloadIconTap(e) {
@@ -86,7 +90,9 @@ class Song extends Component {
 					<a className="video-dload-link" href={videoInfo.videoDownloadLink} download={videoInfo.title + ".mp4"}>video</a>
 				</div>
 				<div className={containerClassName} onClick={this.handleSongOnClick}>
-					<div className='song-thumbnail' style={thumbnailStyle}></div>
+					<div className='song-thumbnail' style={thumbnailStyle}>
+						<i className='fa fa-video-camera song-video-icon'></i>
+					</div>
 					<div className='song-info-container'>
 						<p className="song-title">{videoInfo.title}</p>
 						<p className="song-channel-name">{videoInfo.channelName}</p>

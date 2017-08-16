@@ -39,6 +39,28 @@
     border-radius: 50%;
     background-size: cover;
     margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.song-video-icon {
+    color: #DB1D40;
+    padding: 25px;
+    background: rgba(0,0,0,0.6);
+    /*transform: translateX(70px);*/
+    display: none;
+    transition: all 0.1s;
+}
+
+.song-wrapper:hover .song-video-icon {
+    display: block;
+    /*transform: translateX(0px);*/
+}
+
+.song-thumbnail:hover > .song-video-icon {
+    background: rgba(0,0,0,1);
 }
 
 .song-info-container {
