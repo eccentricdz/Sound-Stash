@@ -34,3 +34,10 @@
 #footer-text {
     font-size: 0.8em;
 }
+
+@media screen 
+and (max-device-width: 800px) {
+    .App-Footer {
+        padding: 20px 20px;
+    }
+}

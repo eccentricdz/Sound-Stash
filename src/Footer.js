@@ -8,13 +8,13 @@ class Footer extends Component {
                 <p id="footer-text">A fun little project!</p>
                 <ul id="social-media-list">
                     <li className="social-media-link">
-                        <a href="https://github.com/eccentricdz" target="_blank"><i className="fa fa-github"/></a>
+                        <a href="https://github.com/eccentricdz" target="_blank" rel="noopener noreferrer"><i className="fa fa-github"/></a>
                     </li>
                     <li className="social-media-link">
-                        <a href="https://dribbble.com/eccentricdz" target="_blank"><i className="fa fa-dribbble"/></a>
+                        <a href="https://dribbble.com/eccentricdz" target="_blank" rel="noopener noreferrer"><i className="fa fa-dribbble"/></a>
                     </li>
                     <li className="social-media-link">
-                        <a href="https://www.behance.net/eccentricdz" target="_blank"><i className="fa fa-behance"/></a>
+                        <a href="https://www.behance.net/eccentricdz" target="_blank" rel="noopener noreferrer"><i className="fa fa-behance"/></a>
                     </li>
                 </ul>
             </div>
