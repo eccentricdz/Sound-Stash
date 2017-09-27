@@ -3,6 +3,8 @@ import './App.css'
 import AjaxUtils from './ajax-utils'
 import SearchBox from './SearchBox'
 import SongsList from './SongsList'
+import Header from './Header'
+import Footer from './Footer'
 
 class App extends Component {
   constructor(props) {
@@ -60,15 +62,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h1>
-            <img src="logo.png" id="app-logo" alt="Sound Stash Logo"/>
-          </h1>
-        </div>
+        <Header />
         <div className="App-container">
           <SearchBox onChange={this.handleQueryChange} isLoading={this.state.isLoading}/>
           <SongsList resultsArray={this.state.resultsArray} />
         </div>
+        <Footer />
       </div>
     );
   }

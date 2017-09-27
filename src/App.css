@@ -6,21 +6,22 @@
   color: #DB1D40;
 }
 
-.App-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 50px auto;
-}
-
 .App-container {
   display: flex;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   flex-flow: column;
+  padding-bottom: 30px;
+  flex: 1 0 auto;
 }
 
-#app-logo {
-  width: 200px;
+html, body, #root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
